@@ -5,9 +5,9 @@ This is the same savings calculator that you created with vanilla JavaScript, on
 
 1. Fork this repository to your own GitHub profile.
 2. Clone your forked repository to your local development workstation.
-3. Use the Angular CLI to create a new Angular app in the existing directory with the following command.
+3. Use the Angular CLI to create a new Angular app in the existing directory with the following command. We skip git, because it is already a git repository.
 ```
-ng new angular-savings-calculator --directory ./
+ng new angular-savings-calculator --directory ./ --skip-git
 ```
 <br>
 ![Results Image](angular-savings-calculator.JPG?raw=true)
