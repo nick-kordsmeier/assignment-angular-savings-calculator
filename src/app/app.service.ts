@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { SavingsRow } from './savings-row';
 
 @Injectable()
 export class CalcService {
-    numAmount;
-    numRate;
-    numYears;
-    balance;
-    i;
-    interestValue;
-    outputArr = [];
-  
-    calculateService(amount, rate, years): any {
-      this.numAmount = parseFloat(amount);
-      this.numRate = parseFloat(rate);
-      this.numYears = parseFloat(years);
-  
-      // Initialize the balance variable (setting equal to starting amount).
-      this.balance = this.numAmount;
+    constructor() {}
+ 
+    calculateService(amount: number, rate: number, years: number): SavingsRow[] {
+        const NUM_MONTHS_YEAR = 12;
+        let savingsRows = [];
+ 
+        // Initialize the balance variable (setting equal to starting amount).
+        let balance = amount;
       
-          // Loop through the number of months to be considered, calculating interest each month and the cumulative balance.
-          // Relevant output values are added to the outputTable variable.
-          for (this.i = 1; this.i <= this.numYears * 12; this.i++) {
-              this.interestValue = Math.round(this.balance * ((this.numRate / 100) / 12) * 100) / 100;
-              this.balance += this.interestValue;
+        // Loop through the number of months to be considered, calculating interest each month and the cumulative balance.
+        // Relevant output values are added to the outputTable variable.
+        for (let i = 1; i <= years * NUM_MONTHS_YEAR; i++) {
+            let month = i;
+            let interestValue = balance * ((rate / 100) / 12);
+            balance += interestValue;
 
-              this.outputArr.push({month: this.i, interest: this.interestValue, balance: Math.round(this.balance * 100) / 100});
+            let savingsRow: SavingsRow = {
+                month: month,
+                interest: interestValue,
+                balance: balance
             }
-            console.log(this.outputArr);
-              return this.outputArr;
-          }
+            
+            savingsRows.push(savingsRow);
+        }
+        return savingsRows;
     }
+}

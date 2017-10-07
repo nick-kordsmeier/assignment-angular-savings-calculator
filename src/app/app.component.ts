@@ -16,16 +16,16 @@ export class AppComponent {
   amount;
   rate;
   years;
-  outputArr = [];
+  savingsRows = [];
 
   calculate(): void {
-    this.outputArr = this.calcService.calculateService(this.amount, this.rate, this.years);
-    console.log(this.outputArr)
+    this.savingsRows = this.calcService.calculateService(this.amount, this.rate, this.years);
   }
 
   reset(): void {
-    this.amount = "";
-    this.rate = "";
-    this.years = "";
+    this.savingsRows = [];
+    this.amount = null;
+    this.rate = null;
+    this.years = null;
   }
 }

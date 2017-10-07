@@ -1,40 +1,40 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:left">
-  <h1>
+  <h2>
     {{title}}
-  </h1>
+  </h2>
  <!-- Set up user entry form and initialize output table id-->
  <p>
   <label>Starting amount: </label>
-  <input [(ngModel)]="amount" placeholder="Amount" />
+  <input type="number" [(ngModel)]="amount" placeholder="Amount" />
 </p>
 
 <p>
   <label>Rate of Return (percent): </label>
-  <input [(ngModel)]="rate" placeholder="Interest Rate" />
+  <input type="number" [(ngModel)]="rate" placeholder="Interest Rate" />
 </p>
 
 <p>
   <label>Years: </label>
-  <input [(ngModel)]="years" placeholder="Number of Years" />
+  <input type="number" [(ngModel)]="years" placeholder="Number of Years" />
 </p>
 
 
  <button (click)="calculate()">Calculate</button>
  <button (click)="reset()">Reset</button>
 
- <div style="margin:auto;">
- <table>
+ <div>
+ <table *ngIf="savingsRows.length">
   <tr> 
      <th>Month</th> 
      <th>Interest</th> 
      <th>Balance</th> 
   </tr>
 
-  <tr *ngFor="let row of outputArr">
+  <tr *ngFor="let row of savingsRows">
       <td>{{row.month}}</td>
-      <td>{{row.interest}}</td>
-      <td>{{row.balance}}</td>
+      <td>{{row.interest | currency:'USD':true }}</td>
+      <td>{{row.balance | currency:'USD':true }}</td>
   </tr>
 </table>
 </div>
